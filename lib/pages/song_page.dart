@@ -59,7 +59,7 @@ class SongPage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      currentSong.artistName,
+                                      currentSong.songName,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
@@ -86,7 +86,14 @@ class SongPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(formatTime(playlistProvider.currentDuration)),
-                            Icon(Icons.shuffle),
+                            InkWell(
+                              onTap: playlistProvider.shufflePlaylist,
+                              child: Icon(
+                                playlistProvider.isRandom
+                                    ? Icons.shuffle_on_outlined
+                                    : Icons.shuffle,
+                              ),
+                            ),
                             Icon(Icons.repeat),
                             Text(formatTime(playlistProvider.totalDuration))
                           ],

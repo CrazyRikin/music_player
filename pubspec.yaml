@@ -66,6 +66,7 @@ flutter:
     - assets\music\Eagles_Hotel_California.mp3
     - assets\music\rolling_in_the_deep.mp3
     - assets\music\Sparkle.mp3
+    - assets\music\Summertime-Sadness.mp3
    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

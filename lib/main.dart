@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:music_player/pages/home_page.dart';
 import 'package:music_player/services/providers/playlist_provider.dart';

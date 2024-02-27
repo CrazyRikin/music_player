@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:music_player/services/models/song_model.dart';
 
 class PlaylistProvider extends ChangeNotifier {
+  PlaylistProvider() {
+    listenToDuration();
+  }
+
+  // playlist
   final List<Song> _playlist = [
     Song(
         songName: "Rolling in the deep",
@@ -19,11 +24,28 @@ class PlaylistProvider extends ChangeNotifier {
         artistName: "Eagles",
         albumArtImagepAth: "assets/images/hotel_california_cover_image.jpg",
         audioPath: "music/Eagles_Hotel_California.mp3"),
+    Song(
+        songName: "Summertime Sadness",
+        artistName: "Lana Del Ray",
+        albumArtImagepAth: "assets/images/summertime_sadness_cover.jpg",
+        audioPath: "music/Summertime-Sadness.mp3")
   ];
 
+  //songs page functionalities
+  final AudioPlayer _audioPlayer = AudioPlayer();
   int? _currentSongIndex;
+  Duration _currentDuration = Duration.zero;
+  Duration _totalDuration = Duration.zero;
+  bool _isPlaying = false;
+  bool _isRandom = false;
+
+  Duration get currentDuration => _currentDuration;
+  Duration get totalDuration => _totalDuration;
+  bool get isPlayng => _isPlaying;
   List<Song> get playlist => _playlist;
   int? get currentSongIndex => _currentSongIndex;
+
+  bool get isRandom => _isRandom;
 
   set currentSongIndex(int? newIndex) {
     _currentSongIndex = newIndex;
@@ -33,24 +55,16 @@ class PlaylistProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool _isPlaying = false;
-  final AudioPlayer _audioPlayer = AudioPlayer();
-  Duration _currentDuration = Duration.zero;
-  Duration _totalDuration = Duration.zero;
-  Duration get currentDuration => _currentDuration;
-  Duration get totalDuration => _totalDuration;
-  bool get isPlayng => _isPlaying;
-
-  PlaylistProvider() {
-    listenToDuration();
-  }
-
   void play() async {
-    final String path = _playlist[_currentSongIndex!].audioPath;
+    final String path;
+
+    path = _playlist[_currentSongIndex!].audioPath;
+
     await _audioPlayer.stop();
     await _audioPlayer.play(AssetSource(path));
     _isPlaying = true;
-    print("play() executed");
+    print("Normalplay() executed");
+
     notifyListeners();
   }
 
@@ -129,5 +143,11 @@ class PlaylistProvider extends ChangeNotifier {
     });
     notifyListeners();
     print("listenToDuration() executed");
+  }
+
+  void shufflePlaylist() {
+    _isRandom = !_isRandom;
+
+    notifyListeners();
   }
 }
