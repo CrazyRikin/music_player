@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/services/providers/playlist_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:auto_scroll/auto_scroll.dart';
 
 class MiniPlayer extends StatelessWidget {
   const MiniPlayer({super.key});
