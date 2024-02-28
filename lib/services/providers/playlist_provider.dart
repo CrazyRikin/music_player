@@ -38,6 +38,7 @@ class PlaylistProvider extends ChangeNotifier {
   Duration _totalDuration = Duration.zero;
   bool _isPlaying = false;
   bool _isRandom = false;
+  bool _isRepeat = false;
 
   Duration get currentDuration => _currentDuration;
   Duration get totalDuration => _totalDuration;
@@ -46,6 +47,7 @@ class PlaylistProvider extends ChangeNotifier {
   int? get currentSongIndex => _currentSongIndex;
 
   bool get isRandom => _isRandom;
+  bool get isRepeat => _isRepeat;
 
   set currentSongIndex(int? newIndex) {
     _currentSongIndex = newIndex;
@@ -147,6 +149,12 @@ class PlaylistProvider extends ChangeNotifier {
 
   void shufflePlaylist() {
     _isRandom = !_isRandom;
+
+    notifyListeners();
+  }
+
+  void repeatSong() {
+    _isRepeat = !_isRepeat;
 
     notifyListeners();
   }

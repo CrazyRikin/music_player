@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:music_player/pages/settings_page.dart';
 
@@ -42,6 +44,16 @@ class MyDrawer extends StatelessWidget {
                     builder: (context) => const SettingPage(),
                   ),
                 );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25, top: 25),
+            child: ListTile(
+              title: const Text('E X I T'),
+              leading: const Icon(Icons.exit_to_app),
+              onTap: () {
+                exit(0);
               },
             ),
           )

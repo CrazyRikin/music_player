@@ -35,7 +35,11 @@ class SongPage extends StatelessWidget {
                           },
                           icon: const Icon(Icons.arrow_back)),
                       const Text("P L A Y L I S T"),
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.menu))
                     ],
                   ),
                   Padding(
@@ -94,7 +98,14 @@ class SongPage extends StatelessWidget {
                                     : Icons.shuffle,
                               ),
                             ),
-                            Icon(Icons.repeat),
+                            InkWell(
+                              onTap: playlistProvider.repeatSong,
+                              child: Icon(
+                                playlistProvider.isRepeat
+                                    ? Icons.repeat_on_outlined
+                                    : Icons.repeat,
+                              ),
+                            ),
                             Text(formatTime(playlistProvider.totalDuration))
                           ],
                         ),

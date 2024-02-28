@@ -54,7 +54,6 @@ class _HomePageState extends State<HomePage> {
                 title: Text(song.songName),
                 subtitle: Text(
                   song.artistName,
-                  style: TextStyle(color: Colors.grey.shade800),
                 ),
                 leading: Image.asset(song.albumArtImagepAth),
               );
